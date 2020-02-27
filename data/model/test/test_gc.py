@@ -570,7 +570,7 @@ def test_image_with_cas(default_tag_policy, initialized_db):
         repository = create_repository()
 
         # Create an image storage record under CAS.
-        content = "hello world"
+        content = b"hello world"
         digest = "sha256:" + hashlib.sha256(content).hexdigest()
         preferred = storage.preferred_locations[0]
         storage.put_content({preferred}, storage.blob_path(digest), content)
@@ -624,7 +624,7 @@ def test_images_shared_cas(default_tag_policy, initialized_db):
         repository = create_repository()
 
         # Create two image storage records with the same content checksum.
-        content = "hello world"
+        content = b"hello world"
         digest = "sha256:" + hashlib.sha256(content).hexdigest()
         preferred = storage.preferred_locations[0]
         storage.put_content({preferred}, storage.blob_path(digest), content)
