@@ -4,7 +4,7 @@ import pytest
 
 from appr.tests.conftest import *
 from appr.tests.test_apiserver import BaseTestServer
-from appr.tests.test_models import CnrTestModels
+from appr.tests.test_models import ApprTestModels
 
 import data.appr_model.blob as appr_blob
 
@@ -75,11 +75,11 @@ def quaydb(monkeypatch, app):
     monkeypatch.setattr("endpoints.appr.cnr_backend.QuayDB.Package", PackageTest)
     monkeypatch.setattr("endpoints.appr.cnr_backend.Package", PackageTest)
     monkeypatch.setattr("endpoints.appr.registry.Package", PackageTest)
-    monkeypatch.setattr("cnr.models.Package", PackageTest)
+    monkeypatch.setattr("appr.models.Package", PackageTest)
 
     monkeypatch.setattr("endpoints.appr.cnr_backend.QuayDB.Channel", ChannelTest)
     monkeypatch.setattr("endpoints.appr.registry.Channel", ChannelTest)
-    monkeypatch.setattr("cnr.models.Channel", ChannelTest)
+    monkeypatch.setattr("appr.models.Channel", ChannelTest)
 
 
 class TestServerQuayDB(BaseTestServer):
@@ -123,7 +123,7 @@ class TestServerQuayDB(BaseTestServer):
         pass
 
 
-class TestQuayModels(CnrTestModels):
+class TestQuayModels(ApprTestModels):
     DB_CLASS = QuayDB
 
     @pytest.mark.xfail
